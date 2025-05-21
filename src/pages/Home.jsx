@@ -1,9 +1,30 @@
+import { useNavigate } from 'react-router-dom';
+import { Package, BarChart4, Settings } from 'lucide-react';
 import { useState } from 'react';
 import MainFeature from '../components/MainFeature';
 import { getIcon } from '../utils/iconUtils';
+  const navigate = useNavigate();
 
-const Home = () => {
-  const [activeTab, setActiveTab] = useState('products');
+
+    <div className="space-y-8">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-surface-900 dark:text-white mb-2">Dashboard</h1>
+        <p className="text-surface-600 dark:text-surface-400">
+          Welcome to StockSense - your inventory management solution
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div onClick={() => navigate('/products')} className="bg-white dark:bg-surface-800 hover:bg-surface-50 dark:hover:bg-surface-700 rounded-xl p-6 shadow-card flex flex-col items-center text-center transition-colors cursor-pointer">
+          <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+            <Package className="h-8 w-8 text-primary" />
+          </div>
+          <h2 className="text-xl font-semibold text-surface-900 dark:text-white mb-2">Products</h2>
+          <p className="text-surface-600 dark:text-surface-400 text-sm">
+            Manage your product inventory, stock levels, and product details
+          </p>
+        </div>
+      </div>
   
   const DashboardIcon = getIcon('layout-dashboard');
   const ClipboardIcon = getIcon('clipboard-list');

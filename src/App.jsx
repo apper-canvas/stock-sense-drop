@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { Sun, Moon } from 'lucide-react';
+import Products from './pages/Products';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 
@@ -29,6 +30,8 @@ function App() {
     setDarkMode((prev) => !prev);
   };
 
+  const location = useLocation();
+
   return (
     <div className="min-h-screen">
       <header className="bg-white dark:bg-surface-800 shadow-sm">
@@ -44,6 +47,26 @@ function App() {
             </h1>
           </div>
           
+          <nav className="hidden md:flex items-center space-x-1">
+            <NavLink 
+              to="/" 
+              className={({ isActive }) => 
+                `px-3 py-2 rounded-lg transition-colors ${
+                  isActive ? 'bg-primary/10 text-primary' : 'text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700'
+                }`
+              }
+            >
+              Home
+            </NavLink>
+            <NavLink 
+              to="/products" 
+              className={({ isActive }) => 
+                `px-3 py-2 rounded-lg transition-colors ${
+                  isActive ? 'bg-primary/10 text-primary' : 'text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700'
+                }`
+              }
+            >Products</NavLink>
+          </nav>
           <button 
             onClick={toggleDarkMode}
             className="p-2 rounded-lg hover:bg-surface-100 dark:hover:bg-surface-700 transition-colors"
@@ -60,6 +83,7 @@ function App() {
       <main className="container mx-auto px-4 md:px-6 py-6">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
