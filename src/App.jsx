@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import { Sun, Moon } from 'lucide-react';
 import Products from './pages/Products';
 import Home from './pages/Home';
+import LowStockAlerts from './pages/LowStockAlerts';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -66,6 +67,18 @@ function App() {
                 }`
               }
             >Products</NavLink>
+            <NavLink 
+              to="/low-stock-alerts" 
+              className={({ isActive }) => 
+                `px-3 py-2 rounded-lg transition-colors ${
+                  isActive ? 'bg-primary/10 text-primary' : 'text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700'
+                }`
+              }
+            >
+              <div className="flex items-center">
+                Low Stock <span className="ml-1.5 px-1.5 py-0.5 text-xs bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-100 rounded-full">Alerts</span>
+              </div>
+            </NavLink>
           </nav>
           <button 
             onClick={toggleDarkMode}
@@ -84,6 +97,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/low-stock-alerts" element={<LowStockAlerts />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
