@@ -391,7 +391,7 @@ const MainFeature = () => {
         
         <button 
           onClick={openAddModal}
-          className="btn btn-primary flex items-center"
+          className="btn btn-primary flex items-center" 
         >
           <PlusIcon className="h-4 w-4 mr-1.5" />
           Add Product
@@ -787,7 +787,7 @@ const MainFeature = () => {
                         </div>
                       </div>
                     ) : (
-                      <form onSubmit={(e) => { e.preventDefault(); saveProduct(); }}>
+                      <form>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div className="space-y-4">
                             <div>
@@ -979,6 +979,7 @@ const MainFeature = () => {
                           <button
                             type="submit"
                             className="btn btn-primary"
+                            onClick={(e) => { e.preventDefault(); saveProduct(); }}
                           >
                             {modalMode === 'add' ? 'Add Product' : 'Save Changes'}
                           </button>
