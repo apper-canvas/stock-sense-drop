@@ -3,13 +3,15 @@ import { Package, BarChart4, Settings } from 'lucide-react';
 import { useState } from 'react';
 import MainFeature from '../components/MainFeature';
 import { getIcon } from '../utils/iconUtils';
+
+function Home() {
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState('products');
 
-
-    <div className="space-y-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-surface-900 dark:text-white mb-2">Dashboard</h1>
-        <p className="text-surface-600 dark:text-surface-400">
+  const DashboardIcon = getIcon('layout-dashboard');
+  const ClipboardIcon = getIcon('clipboard-list');
+  const TruckIcon = getIcon('truck');
+  const SettingsIcon = getIcon('settings');
           Welcome to StockSense - your inventory management solution
         </p>
       </div>
@@ -25,13 +27,7 @@ import { getIcon } from '../utils/iconUtils';
           </p>
         </div>
       </div>
-  
-  const DashboardIcon = getIcon('layout-dashboard');
-  const ClipboardIcon = getIcon('clipboard-list');
-  const TruckIcon = getIcon('truck');
-  const SettingsIcon = getIcon('settings');
-  
-  const tabs = [
+    </div>
     { id: 'products', name: 'Products', icon: ClipboardIcon },
     { id: 'dashboard', name: 'Dashboard', icon: DashboardIcon },
     { id: 'orders', name: 'Orders', icon: TruckIcon },
@@ -39,7 +35,29 @@ import { getIcon } from '../utils/iconUtils';
   ];
   
   return (
-    <div className="flex flex-col space-y-6">
+    <div>
+      <div className="space-y-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-surface-900 dark:text-white mb-2">Dashboard</h1>
+          <p className="text-surface-600 dark:text-surface-400">
+            Welcome to StockSense - your inventory management solution
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div onClick={() => navigate('/products')} className="bg-white dark:bg-surface-800 hover:bg-surface-50 dark:hover:bg-surface-700 rounded-xl p-6 shadow-card flex flex-col items-center text-center transition-colors cursor-pointer">
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+              <Package className="h-8 w-8 text-primary" />
+            </div>
+            <h2 className="text-xl font-semibold text-surface-900 dark:text-white mb-2">Products</h2>
+            <p className="text-surface-600 dark:text-surface-400 text-sm">
+              Manage your product inventory, stock levels, and product details
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div className="flex flex-col space-y-6 mt-8">
       <div className="flex justify-between items-center">
         <h1 className="text-2xl md:text-3xl font-bold text-surface-900 dark:text-white">
           Inventory Management
@@ -48,6 +66,13 @@ import { getIcon } from '../utils/iconUtils';
 
       <div className="bg-white dark:bg-surface-800 rounded-xl shadow-card p-2 mb-6">
         <nav className="flex flex-wrap md:flex-nowrap">
+          {(() => {
+            const tabs = [
+              { id: 'products', name: 'Products', icon: ClipboardIcon },
+              { id: 'dashboard', name: 'Dashboard', icon: DashboardIcon },
+              { id: 'orders', name: 'Orders', icon: TruckIcon },
+              { id: 'settings', name: 'Settings', icon: SettingsIcon }
+            ];
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -62,6 +87,7 @@ import { getIcon } from '../utils/iconUtils';
               <span className="hidden md:inline">{tab.name}</span>
             </button>
           ))}
+          })()}
         </nav>
       </div>
 
@@ -112,6 +138,6 @@ import { getIcon } from '../utils/iconUtils';
       )}
     </div>
   );
-};
+}
 
 export default Home;
