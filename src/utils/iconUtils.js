@@ -1,10 +1,77 @@
-import * as LucideIcons from 'lucide-react';
+import {
+  Package,
+  Search,
+  Plus,
+  Edit,
+  Trash2,
+  Eye,
+  X,
+  Tag,
+  DollarSign,
+  Info,
+  Check,
+  AlertCircle,
+  AlertTriangle,
+  Box,
+  Archive,
+  Filter,
+  RefreshCw,
+  Truck,
+  Settings,
+  BarChart4,
+  ChevronRight,
+  Users,
+  ShoppingCart,
+  Home,
+  HelpCircle,
+  Calendar,
+  Clock,
+  CreditCard,
+  Layers,
+  Award
+} from 'lucide-react';
 
-export const getIcon = (iconName) => {
-  // Handle null/undefined case
-  if (!iconName) {
-    console.warn('No icon name provided, using Smile as fallback');
+// Map of icon names to their respective components
+const iconMap = {
+  'package': Package,
+  'search': Search,
+  'plus': Plus,
+  'edit-3': Edit,
+  'edit': Edit,
+  'trash-2': Trash2,
+  'eye': Eye,
+  'x': X,
+  'tag': Tag,
+  'dollar-sign': DollarSign,
+  'info': Info,
+  'check': Check,
+  'alert-circle': AlertCircle,
+  'alert-triangle': AlertTriangle,
+  'box': Box,
+  'archive': Archive,
+  'filter': Filter,
+  'refresh-cw': RefreshCw,
+  'truck': Truck,
+  'settings': Settings,
+  'bar-chart-4': BarChart4,
+  'chevron-right': ChevronRight,
+  'users': Users,
+  'shopping-cart': ShoppingCart,
+  'home': Home,
+  'help-circle': HelpCircle,
+  'calendar': Calendar,
+  'clock': Clock,
+  'credit-card': CreditCard,
+  'layers': Layers,
+  'award': Award
     return LucideIcons.Smile;
+
+export const getIcon = (name) => {
+  const IconComponent = iconMap[name.toLowerCase()];
+  
+  // Return the icon component or a fallback if not found
+  return IconComponent || Info;
+};
   }
   
   // Step 1: Try direct match first (if already PascalCase)
